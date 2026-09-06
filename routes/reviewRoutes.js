@@ -3,15 +3,27 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  createReview,
+  createReview, getProductReviews, deleteReview
 } = require("../controllers/reviewController");
 
 const protect = require("../middleware/authMiddleware");
+
 
 router.post(
   "/:productId",
   protect,
   createReview
+);
+
+router.get(
+  "/:productId",
+  getProductReviews
+);
+
+router.delete(
+  "/:reviewId",
+  protect,
+  deleteReview
 );
 
 module.exports = router;
